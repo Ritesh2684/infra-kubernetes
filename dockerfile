@@ -4,7 +4,6 @@ MAINTAINER ritesh
 COPY sample.war /usr/local/tomcat/webapps/
 
 RUN mkdir /var/log/sample \
- && mkdir /usr/local/tomcat/webapps/sample \
  && addgroup -g 1000 -S ritesh \ 
  && adduser -u 1000 -S ritesh -G ritesh
  
