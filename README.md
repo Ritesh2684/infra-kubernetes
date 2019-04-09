@@ -25,32 +25,32 @@ As a solution to part 1, I have created,
 * Started tomcat as CMD along with the deployment of the image
 5) execute below command to build the docker image from the location of docker file
 		`docker build -t sample .` 
-5) Created <b> sample-k8s.yml </b> for the deployment of the created docker image.
+6) Created <b> sample-k8s.yml </b> for the deployment of the created docker image.
 * The yml file contains two parts, Kind : Deployment set to deploy the image and Kind : service to expose the application for other pods within the cluster.
-6) Execute the below command for deployment of Deployment and Service,
+7) Execute the below command for deployment of Deployment and Service,
          `kubectl apply -f sample-k8s.yml` 
 Response should be 
 deployment.apps "sample-app" created
 service "sampleservice" created
-7) Execute below command to get the list of deployed pods, it can take some time before pods are up and running depending on readiness probe.
+8) Execute below command to get the list of deployed pods, it can take some time before pods are up and running depending on readiness probe.
           `kubectl get pods`
 Output should be 
 NAME                          READY     STATUS    RESTARTS   AGE
 sample-app-789f8c5bb7-7c6dw   1/1       Running   0          36s
 
-7) To test the application from local browser, execute the below command,and keep the console open
+9) To test the application from local browser, execute the below command,and keep the console open
           `kubectl port-forward <pod-name> 8080:8080` example in this case:- kubectl port-forward sample-app-789f8c5bb7-7c6dw 8080:8080
-8) Now trigger the url again from browser, it should work.
-9) Also check the status of the service, with below command, service should be succesfully deployed. Service is exposed with name as "sampleservice".
+10) Now trigger the url again from browser, it should work.
+11) Also check the status of the service, with below command, service should be succesfully deployed. Service is exposed with name as "sampleservice".
           `kubectl get services`
-10)To test the service from another pod in the same cluster, create a test image which supports curl command.
+12)To test the service from another pod in the same cluster, create a test image which supports curl command.
            `docker build -t test-image test-image/`
-11)Deploy the test-image using below command, 
+13)Deploy the test-image using below command, 
            `kubectl apply -f sample-test.yml` 
-12)Test test-image pod should be up and running, `kubectl get pods`
-13)To test, we need to ssh into test-image pod, use below command,
+14)Test test-image pod should be up and running, `kubectl get pods`
+15)To test, we need to ssh into test-image pod, use below command,
          `kubectl exec -it test-image sh`
-14)Execute the curl command from within the test-image pod, we should get the successful response, which means we are able to reach the application from another pod on port 8080 via HTTP
+16)Execute the curl command from within the test-image pod, we should get the successful response, which means we are able to reach the application from another pod on port 8080 via HTTP
          `curl http://sampleservice:8080/sample`
     
 ## Part 2
