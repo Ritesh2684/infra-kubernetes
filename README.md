@@ -41,8 +41,7 @@ sample-app-789f8c5bb7-7c6dw   1/1       Running   0          36s
 9) To test the application from local browser, execute the below command,and keep the console open
           `kubectl port-forward <pod-name> 8080:8080` example in this case:- kubectl port-forward sample-app-789f8c5bb7-7c6dw 8080:8080
 10) Now trigger the url again from browser, http://localhost:8080/sample it should work.
-11) Also check the status of the service, with below command, service should be succesfully deployed. Service is exposed with name as "sampleservice".
-          `kubectl get services`
+11) Also check the status of the service, with below command, service should be succesfully deployed. Service is exposed with name as "sampleservice".           `kubectl get services`
 12)To test the service from another pod in the same cluster, create a test image which supports curl command.
            `docker build -t test-image test-image/`
 13)Deploy the test-image using below command, 
